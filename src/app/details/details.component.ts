@@ -2,7 +2,7 @@ import { Component, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import { HousingService } from "../housing.service";
-import { Amiibo, ReleaseDates } from "../housinglocation";
+import { Amiibo } from "../housinglocation";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 
 @Component({
@@ -26,9 +26,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
       <section class="listing-features">
         <h2 class="section-heading">About this housing location</h2>
         <ul>
-          <!-- <li *ngFor="let release of housingLocation.release">
-            {{ release.value }}
-          </li> -->
+          <li>Release Date: {{ housingLocation.release.jp }}</li>
           <li>Does this location have wifi: {{ housingLocation.type }}</li>
           <li>Does this location have laundry: {{ housingLocation.head }}</li>
         </ul>
@@ -50,9 +48,6 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
   styleUrls: ["./details.component.css"],
 })
 export class DetailsComponent {
-  keys(obj: ReleaseDates | undefined): Array<string> {
-    return obj ? Object.keys(obj) : [];
-  }
   // Activated route will grab the url param dynamic value
   route: ActivatedRoute = inject(ActivatedRoute);
   housingService = inject(HousingService);
